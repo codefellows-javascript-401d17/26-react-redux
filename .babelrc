@@ -1,0 +1,5 @@
+{
+  "presets": ["es2015", "react"],
+  "plugins": ["transform-object-rest-spread"] 
+  //use rest, spread syntax w/ object (not just arrays)
+}
