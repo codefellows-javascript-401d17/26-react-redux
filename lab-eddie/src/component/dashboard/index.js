@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
         <ul>
           {this.props.categories.map(cat => {
             return (
-              <li key={cat.id}>
+              <li key={cat.id}a>
                 <CategoryBody
                   removeCat={this.props.categoryDelete}
                   buttonText='Remove'
