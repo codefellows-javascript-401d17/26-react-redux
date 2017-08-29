@@ -4,7 +4,7 @@ import uuid from 'uuid/v1';
 
 export const categoryCreate = (cat) => {
   cat.id = uuid();
-  cate.published = new Date();
+  cat.published = new Date();
   return {
     type: 'CATEGORY_CREATE',
     payload: cat
