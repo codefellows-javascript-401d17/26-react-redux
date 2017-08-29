@@ -10,13 +10,6 @@ import {
 import CategoryForm from '../category-form';
 
 class DashboardContainer extends React.Component {
-  componentDidMount() {
-    this.props.categoryCreate({
-      name: 'test category',
-      budget: 400
-    });
-  }
-
   render() {
     return (
       <main className='dashboard-container'>
@@ -29,8 +22,10 @@ class DashboardContainer extends React.Component {
 
         {this.props.categories.map((item) =>
             <div key={item.id}>
-              <h3>{item.name}</h3>
-              <h3>{item.budget}</h3>
+              <p>{item.name}</p>
+              <p>{item.budget}</p>
+              <button onClick={() => this.props.categoryDelete(item)}>X</button>
+              <button onClick={() => this.props.categoryUpdate(item)}
             </div>
           )}
       </main>
