@@ -2,7 +2,7 @@ const uuid = require('uuid/v1');
 
 
 export const categoryCreate = (category) => {
-  console.log('called from dashboard?');
+  console.log('called from dashboard?', category);
   category.id = uuid();
   category.timestamp = new Date();
   return {

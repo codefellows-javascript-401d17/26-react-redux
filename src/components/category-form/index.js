@@ -3,6 +3,7 @@ import React from 'react';
 class CategoryForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       name: props.category ? props.category.name : '',
       budget: props.category ? props.category.budget : 0
@@ -18,8 +19,12 @@ class CategoryForm extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log('clicked submit!');
     e.preventDefault();
+    console.log('clicked submit!');
+    this.state.budget = parseInt(this.state.budget)
+    //object.assign makes copy of state, calls onComplete
+    this.props.onComplete(Object.assign({}, this.state));
+    console.log('after oncomplete called: ', this.state);
 
   }
 
@@ -28,6 +33,7 @@ class CategoryForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <input
           type='text'
+          id='submitField'
           name='name'
           onChange={this.handleChange}
           value={this.state.name}
