@@ -12,11 +12,11 @@ class CategoryBody extends React.Component {
 
   render() {
     return(
-      <li>
+      <div>
         <h3>{this.props.category.title}</h3>
         <p>{`Budget: ${this.props.category.budget}`}</p>
         <button onClick={this.onClick}>{this.props.buttonText}</button>
-      </li>
+      </div>
     )
   }
 }

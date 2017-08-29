@@ -19,10 +19,13 @@ class CategoryForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.addCat(Object.assign({}, this.state));
+    let tempCat = Object.assign({}, this.state);
+    if(this.props.category) tempCat.id = this.props.category.id;
+    this.props.onComplete(tempCat);
   }
 
   render() {
+    let cat = this.props.category;
     return (
       <form onSubmit={this.onSubmit} className='cat-form'>
         <input
@@ -31,7 +34,7 @@ class CategoryForm extends React.Component {
           required={true}
           onChange={this.onChange}
           value={this.state.title}
-          placeholder='Enter Category'
+          placeholder={cat ? cat.title :'Enter Category'}
         />
         <input
           type='text'
@@ -39,7 +42,7 @@ class CategoryForm extends React.Component {
           required={true}
           onChange={this.onChange}
           value={this.state.budget}
-          placeholder='Enter Budget'
+          placeholder={cat ? cat.budget :'Enter Buudget'}
         />
         <button type='submit'>{this.props.buttonText}</button>
       </form>

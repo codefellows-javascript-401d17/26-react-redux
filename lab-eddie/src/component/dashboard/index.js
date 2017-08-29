@@ -14,18 +14,24 @@ class Dashboard extends React.Component {
       <main className='dashboard'>
         <h1>{'Eddie\'s Kick Ass Dashboard :D'}</h1>
         <CategoryForm
-          addCat={this.props.categoryCreate}
+          onComplete={this.props.categoryCreate}
           buttonText='Add Category'
         />
         <ul>
           {this.props.categories.map(cat => {
             return (
-              <CategoryBody
-                removeCat={this.props.categoryDelete}
-                buttonText='Remove'
-                category={cat}
-                key={cat.id}
-              />
+              <li key={cat.id}>
+                <CategoryBody
+                  removeCat={this.props.categoryDelete}
+                  buttonText='Remove'
+                  category={cat}
+                />
+                <CategoryForm
+                  category={cat}
+                  onComplete={this.props.categoryUpdate}
+                  buttonText='Update'
+                />
+              </li>
             );
           })}
         </ul>
