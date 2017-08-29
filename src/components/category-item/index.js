@@ -4,6 +4,7 @@ import CategoryForm from '../category-form/'
 
 class CategoryItem extends React.Component {
   render() {
+    console.log('inside item', this.props);
     return (
       <li key={this.props.category.id}>
         <button onClick={() => {

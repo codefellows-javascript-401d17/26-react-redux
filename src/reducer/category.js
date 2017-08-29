@@ -7,6 +7,7 @@ export default (state=initialState, action) => {
     case 'CATEGORY_CREATE':
       return ([...state, payload]);
     case 'CATEGORY_UPDATE':
+      console.log('called');
       return (state.map((category) => {
         return category.id === payload.id ? payload : category;
       }))
