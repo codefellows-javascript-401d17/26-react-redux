@@ -25,7 +25,7 @@ class DashboardContainer extends React.Component {
               <p>{item.name}</p>
               <p>{item.budget}</p>
               <button onClick={() => this.props.categoryDelete(item)}>X</button>
-              <button onClick={() => this.props.categoryUpdate(item)}
+              <CategoryItemForm />
             </div>
           )}
       </main>
