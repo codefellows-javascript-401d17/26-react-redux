@@ -11,7 +11,10 @@ import CategoryForm from '../category-form';
 
 class DashboardContainer extends React.Component {
   componentDidMount() {
-    this.props.categoryCreate({ title: 'test category' });
+    this.props.categoryCreate({
+      name: 'test category',
+      budget: 400
+    });
   }
 
   render() {
@@ -20,13 +23,14 @@ class DashboardContainer extends React.Component {
         <h2>Dashboard</h2>
 
         <CategoryForm
-          buttonText='create category'
+          buttonText='create budget category'
           onComplete={this.props.categoryCreate}
           />
 
         {this.props.categories.map((item) =>
             <div key={item.id}>
-              <h3>{item.title}</h3>
+              <h3>{item.name}</h3>
+              <h3>{item.budget}</h3>
             </div>
           )}
       </main>

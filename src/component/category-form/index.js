@@ -5,15 +5,25 @@ class CategoryForm extends React.Component {
     super(props);
 
     this.state = {
-      title: props.category ? props.category.title : ''
+      name: props.category ? props.category.name : '',
+      budget: props.category ? props.category.budget : 0
     }
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleBudgetChange = this.handleBudgetChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ title: e.target.value })
+  handleNameChange(e) {
+    this.setState({
+      name: e.target.value
+    })
+  }
+
+  handleBudgetChange(e) {
+    this.setState({
+      budget: e.target.value
+    })
   }
 
   handleSubmit(e) {
@@ -25,11 +35,18 @@ class CategoryForm extends React.Component {
     return (
       <form className='category-form' onSubmit={this.handleSubmit}>
         <input
-          name='title'
+          name='name'
           type='text'
-          placeholder='title'
-          value={this.state.title}
-          onChange={this.handleChange}
+          placeholder='name'
+          value={this.state.name}
+          onChange={this.handleNameChange}
+          />
+        <input
+          name='budget'
+          type='number'
+          placeholder='budget'
+          value={this.state.budget}
+          onChange={this.handleBudgetChange}
           />
 
         <button type='submit'>{this.props.buttonText}</button>
