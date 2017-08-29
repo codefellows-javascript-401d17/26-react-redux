@@ -15,6 +15,7 @@ class DashboardContainer extends React.Component {
           onComplete={this.props.categoryCreate} />
         <ul className="categoryList">
           {this.props.categories.map((item) => {
+            console.log(item);
             return (
               <CategoryItem
                 key={item.id}
@@ -22,13 +23,13 @@ class DashboardContainer extends React.Component {
                 categoryDelete={this.props.categoryDelete}
                 categoryUpdate={this.props.categoryUpdate}
                 />
-            )
-          }
-        )}
-      </ul>
-    </main>
-  )
-}
+              )
+            }
+          )}
+        </ul>
+      </main>
+    )
+  }
 }
 
 

@@ -14,25 +14,27 @@ class CategoryForm extends React.Component {
   }
 
   handleChange(e) {
-      let {name, value, type} = e.target;
-      if (type === 'number') {
-        try {
-          this.setState({
-            [name]: parseInt(value),
-          });
-        } catch (err) {
-          console.error(err);
-        }
-      } else {
+    let {name, value, type} = e.target;
+    if (type === 'number') {
+      try {
         this.setState({
-          [name]: value,
+          [name]: parseInt(value),
         });
+      } catch (err) {
+        console.error(err);
       }
+    } else {
+      this.setState({
+        [name]: value,
+      });
     }
+  }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onComplete(Object.assign({}, this.state));
+    let category = Object.assign({}, this.state);
+    if(this.props.category) category.id = this.props.category.id;
+    this.props.onComplete(category);
   }
 
   render() {
@@ -44,7 +46,7 @@ class CategoryForm extends React.Component {
           placeholder='title'
           value={this.state.title}
           onChange={this.handleChange}
-        />
+          />
 
         <input
           name='budget'
@@ -52,7 +54,7 @@ class CategoryForm extends React.Component {
           placeholder='budget'
           value={this.state.budget}
           onChange={this.handleChange}
-        />
+          />
 
         <button type='submit'>{this.props.buttonText}</button>
       </form>

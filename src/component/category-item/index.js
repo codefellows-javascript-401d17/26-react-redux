@@ -17,7 +17,6 @@ class CategoryItem extends React.Component {
       </li>
     )
   }
-
 }
 
 export default CategoryItem
