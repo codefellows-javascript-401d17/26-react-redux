@@ -12,7 +12,7 @@ export default (state=initialState, action) => {
       }))
     case 'CATEGORY_DELETE':
       return state.filter((category) => {
-        return category.id === payload.id;
+        return category.id !== payload.id;
       })
     case 'CATEGORY_RESET':
       return state = initialState;
