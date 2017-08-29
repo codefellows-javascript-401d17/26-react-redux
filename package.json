@@ -1,0 +1,21 @@
+{
+  "name": "26-react-redux",
+  "version": "1.0.0",
+  "description": "![cf](https://i.imgur.com/7v5ASc8.png) 26: React & Redux ======",
+  "main": "main.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack-dev-server --inline --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohjonah/26-react-redux.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ohjonah/26-react-redux/issues"
+  },
+  "homepage": "https://github.com/ohjonah/26-react-redux#readme"
+}
