@@ -1,6 +1,5 @@
 import React from 'react';
 import CategoryForm from '../category-form';
-import {categoryCreate, categoryUpdate, categoryDelete} from '../../action/category-actions.js';
 
 
 class CategoryItem extends React.Component {
@@ -11,8 +10,8 @@ class CategoryItem extends React.Component {
         <h3>{this.props.category.budget}</h3>
         <button className='deleteButton' onClick={()=>this.props.categoryDelete(this.props.category)}>X</button>
         <CategoryForm
-          category={this.props.category}
           buttonText='Update Category'
+          category={this.props.category}
           onComplete={this.props.categoryUpdate}
           />
       </li>
