@@ -18,9 +18,9 @@ class DashboardContainer extends React.Component {
             return (
               <CategoryItem
                 key={item.id}
-                category = {item}
-                categoryDelete = {this.props.categoryDelete}
-                categoryUpdate = {this.props.categoryUpdate}
+                category={item}
+                categoryDelete={this.props.categoryDelete}
+                categoryUpdate={this.props.categoryUpdate}
                 />
             )
           }

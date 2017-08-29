@@ -9,7 +9,7 @@ class CategoryItem extends React.Component {
       <li>
         <h2>{this.props.category.title}</h2>
         <h3>{this.props.category.budget}</h3>
-        <button className='deleteButton' onClick={this.props.categoryDelete}>X</button>
+        <button className='deleteButton' onClick={()=>this.props.categoryDelete(this.props.category)}>X</button>
         <CategoryForm
           category={this.props.category}
           buttonText='Update Category'
