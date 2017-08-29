@@ -24,7 +24,7 @@ class DashboardContainer extends React.Component {
     return (
       <section>
         <h2>Dashboard</h2>
-        <CategoryForm onComplete={this.props.categoryCreate} />
+        <CategoryForm buttonText='Create' onComplete={this.props.categoryCreate} />
         {this.props.categories.map((category) => {
           return (
             <CategoryItem categoryDelete={this.props.categoryDelete} category={category} />
