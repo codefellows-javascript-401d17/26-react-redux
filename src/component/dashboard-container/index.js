@@ -22,10 +22,13 @@ class DashboardContainer extends React.Component {
 
         {this.props.categories.map((item) =>
             <div key={item.id}>
-              <p>{item.name}</p>
-              <p>{item.budget}</p>
+              <h2>{item.name}</h2>
+              <CategoryForm
+                buttonText='update'
+                category={item}
+                onComplete={this.props.categoryUpdate} />
+
               <button onClick={() => this.props.categoryDelete(item)}>X</button>
-              <CategoryItemForm />
             </div>
           )}
       </main>

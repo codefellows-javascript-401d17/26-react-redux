@@ -5,6 +5,7 @@ class CategoryForm extends React.Component {
     super(props);
 
     this.state = {
+      id: props.category ? props.category.id : '',
       name: props.category ? props.category.name : '',
       budget: props.category ? props.category.budget : 0
     }
@@ -29,6 +30,7 @@ class CategoryForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.onComplete({...this.state});
+    this.props.
   }
 
   render() {
