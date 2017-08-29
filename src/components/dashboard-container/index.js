@@ -5,7 +5,7 @@ import {
   categoryDelete
 } from '../../action/category-actions.js';
 import CategoryForm from '../category-form/'
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 class DashboardContainer extends React.Component {
   constructor(props) {
@@ -23,11 +23,18 @@ class DashboardContainer extends React.Component {
     return (
       <section>
         <h2>Dashboard</h2>
-        <CategoryForm onComplete={this.props.categoryCreate}/>
+        <CategoryForm onComplete={this.props.categoryCreate} />
         {console.log('categories in dashboard', this.props.categories)}
-        {/* {this.props.categories.map((item) => {
-          <h4>item.title</h4>
-        })} */}
+        {this.props.categories.map((item, i) => {
+          return (
+            <ul>
+              <li key={i}>
+                <h4>name: {item.name}</h4>
+                <p>budget: {item.budget}</p>
+              </li>
+            </ul>
+          )
+        })}
 
       </section>
 
