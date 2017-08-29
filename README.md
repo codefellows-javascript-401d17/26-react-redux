@@ -40,7 +40,7 @@
 * this reducer should support the following interactions
   * `CATEGORY_CREATE`
   * `CATEGORY_UPDATE`
-  * `CATEGORY_DESTORY`
+  * `CATEGORY_DESTROY`
 
 ###### action creators
 * create an action creator for each interaction supported by your category reducer
