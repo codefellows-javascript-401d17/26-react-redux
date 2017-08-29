@@ -22,7 +22,11 @@ class DashboardContainer extends React.Component {
         />
 
         {this.props.categories.map((item, index) =>
-          <CategoryItem key={index} category={item} />
+          <CategoryItem 
+            key={index} 
+            category={item} 
+            categoryDelete={this.props.categoryDelete} 
+            categoryUpdate={this.props.categoryUpdate} />
         )}
       </main>
     );

@@ -25,7 +25,15 @@ class CategoryForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onComplete(Object.assign({}, this.state));
+
+    let category = Object.assign({}, this.state);
+
+    if (this.props.category) {
+      category.id = this.props.category.id;
+      category.timestamp = this.props.category.timestamp;
+    }
+
+    this.props.onComplete(category);
   }
 
   render() {
@@ -49,7 +57,8 @@ class CategoryForm extends React.Component {
 
 CategoryForm.propTypes = {
   buttonText: PropTypes.string,
-  onComplete: PropTypes.func
+  onComplete: PropTypes.func,
+  category: PropTypes.object
 };
 
 export default CategoryForm;
