@@ -4,62 +4,31 @@ import {
   categoryUpdate,
   categoryDelete
 } from '../../action/category-actions.js';
+import CategoryForm from '../category-form/'
 
 class DashboardContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: props.category ? props.category.name : '',
-      budget: props.category ? props.category.budget : 0
-    }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   componentDidMount() {
+    console.log('mounted');
     console.log('state in dashboardcontainer', this.state)
-    console.log('props in dashboardcontainer', this.props);
+    console.log('props in dashboardcontainer, want categoryCreate to be here', this.props);
   }
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-    console.log('event target is', e.target);
-  }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    
-  }
-
-  // componentDidMount() {
-  //   categoryCreate({ name: 'rent', budget: 800 });
-  //   categoryCreate({ name: 'pizza', budget: 500 });
-  // }
 
   render() {
     return (
       <section>
         <h2>Dashboard</h2>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            name='name'
-            onChange={this.handleChange}
-            value={this.state.name}
-            placeholder='enter a category name'
-          />
-          <input
-            id='budgetField'
-            type='text'
-            name='budget'
-            value={this.state.budget}
-            onChange={this.handleChange}
-            placeholder='enter a budget for this category'
-          />
-          <button type='submit'>Submit</button>
-        </form>
+        <CategoryForm />
+        {/* {this.props.categories.map((item) => {
+          <h4>item.title</h4>
+        })} */}
+
       </section>
 
     )
