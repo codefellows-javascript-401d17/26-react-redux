@@ -20,6 +20,7 @@ class CategoryForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     let tempCat = Object.assign({}, this.state);
+    tempCat.budget = parseInt(tempCat.budget);
     if(this.props.category) tempCat.id = this.props.category.id;
     this.props.onComplete(tempCat);
   }
@@ -37,7 +38,7 @@ class CategoryForm extends React.Component {
           placeholder={cat ? cat.title :'Enter Category'}
         />
         <input
-          type='text'
+          type='number'
           name='budget'
           required={true}
           onChange={this.onChange}
