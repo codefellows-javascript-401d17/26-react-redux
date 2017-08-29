@@ -1,6 +1,6 @@
 import uuid from 'uuid/v1';
 
-export const categoreCreate = (category) => {
+export const categoryCreate = (category) => {
   category.id = uuid();
   category.timestamp = new Date();
 

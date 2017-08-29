@@ -10,9 +10,8 @@ import {
 import CategoryForm from '../category-form';
 
 class DashboardContainer extends React.Component {
-
   componentDidMount() {
-    this.props.categoryCreate({ title: 'THIS IS A TEST' });
+    this.props.categoryCreate({ title: 'test category' });
   }
 
   render() {
@@ -25,7 +24,7 @@ class DashboardContainer extends React.Component {
           onComplete={this.props.categoryCreate}
           />
 
-          {this.props.categories.map((item) =>
+        {this.props.categories.map((item) =>
             <div key={item.id}>
               <h3>{item.title}</h3>
             </div>
