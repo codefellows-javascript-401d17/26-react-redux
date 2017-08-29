@@ -22,7 +22,8 @@ class DashboardContainer extends React.Component {
 
         {this.props.categories.map((item) =>
             <div key={item.id}>
-              <h2>{item.name}</h2>
+              <h2>category: {item.name}</h2>
+              <h2>budget: {item.budget}</h2>
               <CategoryForm
                 buttonText='update'
                 category={item}
