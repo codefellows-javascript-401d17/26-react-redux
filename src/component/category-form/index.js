@@ -5,7 +5,8 @@ class CategoryForm extends React.Component {
     super(props);
 
     this.state = {
-      title: props.category ? props.category.title : ''
+      title: props.category ? props.category.title : '',
+      budget: props.category ? props.category.budget : ''
     }
 
     this.handleChange = this.handleChange.bind(this);

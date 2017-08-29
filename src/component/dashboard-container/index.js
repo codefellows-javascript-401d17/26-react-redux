@@ -14,18 +14,23 @@ class DashboardContainer extends React.Component {
           buttonText='create category'
           onComplete={this.props.categoryCreate} />
         <ul className="categoryList">
-          {this.props.categories.map((item, i) => {
+          {this.props.categories.map((item) => {
             return (
-              <CategoryItem key={i} category = {item}
-                deleteNote = {this.props.categoryDelete}
+              <CategoryItem
+                key={item.id}
+                category = {item}
+                categoryDelete = {this.props.categoryDelete}
+                categoryUpdate = {this.props.categoryUpdate}
                 />
             )
-          )}
-        </ul>
-      </main>
-    )
-  }
+          }
+        )}
+      </ul>
+    </main>
+  )
 }
+}
+
 
 
 const mapStateToProps = (state) => {

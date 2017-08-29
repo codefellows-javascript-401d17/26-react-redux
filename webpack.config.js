@@ -12,14 +12,14 @@ const ExtractPlugin = require('extract-text-webpack-plugin');
 let plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
   new ExtractPlugin('bundle-[hash].css'),
-  new HtmlPlugin({ template: `${__dirname}/src/index.html`}),
+  new HtmlPlugin({ template: `${__dirname}/src/index.html` }),
   new DefinePlugin({
     __DEBUG__: JSON.stringify(!production)
   })
 ]
 
-if(production) {
-  plugin = plugin.concat([ new CleanPlugin(), new UglifyPlugin()])
+if (production) {
+  plugins = plugins.concat([ new CleanPlugin(), new UglifyPlugin() ]);
 }
 
 module.exports = {
@@ -30,11 +30,10 @@ module.exports = {
   },
   devtool: production ? undefined : 'eval',
   output: {
-    path: `${-__dirname}/build`,
+    path: `${__dirname}/build`,
     filename: 'bundle-[hash].js',
     publicPath: process.env.CDN_URL
   },
-
   module: {
     rules: [
       {
@@ -48,7 +47,7 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|ttf|eot|glyph|\.svg)$/,
-        use:[
+        use: [
           {
             loader: 'url-loader',
             options: {
@@ -68,6 +67,16 @@ module.exports = {
               limit: 6000,
               name: 'image/[name].[ext]'
             }
+          }
+        ]
+      },
+      {
+        test: /\.(mp3|aac|aiff|wav|flac|m4a|mp4|ogg)$/,
+        exclude: /\.glyph.svg/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { name: 'audio/[name].[ext]' }
           }
         ]
       }
