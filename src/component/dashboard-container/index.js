@@ -7,9 +7,14 @@ import {
   categoryDelete
 } from '../../action/category-actions.js';
 
-imort CategoryForm from '../category-form';
+import CategoryForm from '../category-form';
 
 class DashboardContainer extends React.Component {
+
+  componentDidMount() {
+    this.props.categoryCreate({ title: 'THIS IS A TEST' });
+  }
+
   render() {
     return (
       <main className='dashboard-container'>
