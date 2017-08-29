@@ -20,12 +20,8 @@ class CategoryForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('clicked submit!');
     this.state.budget = parseInt(this.state.budget)
-    //object.assign makes copy of state, calls onComplete
     this.props.onComplete(Object.assign({}, this.state));
-    console.log('after oncomplete called: ', this.state);
-
   }
 
   render() {

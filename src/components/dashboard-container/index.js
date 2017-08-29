@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 import {
   categoryCreate,
   categoryUpdate,
@@ -6,17 +8,16 @@ import {
 } from '../../action/category-actions.js';
 import CategoryForm from '../category-form/'
 import { connect } from 'react-redux';
+import CategoryItem from '../../components/category-item'
 
 class DashboardContainer extends React.Component {
   constructor(props) {
     super(props);
-
   }
+
 
   componentDidMount() {
     console.log('mounted');
-    console.log('state in dashboardcontainer', this.state)
-    console.log('props in dashboardcontainer, want categoryCreate to be here', this.props);
   }
 
   render() {
@@ -24,15 +25,9 @@ class DashboardContainer extends React.Component {
       <section>
         <h2>Dashboard</h2>
         <CategoryForm onComplete={this.props.categoryCreate} />
-        {console.log('categories in dashboard', this.props.categories)}
-        {this.props.categories.map((item, i) => {
+        {this.props.categories.map((category) => {
           return (
-            <ul>
-              <li key={i}>
-                <h4>name: {item.name}</h4>
-                <p>budget: {item.budget}</p>
-              </li>
-            </ul>
+            <CategoryItem categoryDelete={this.props.categoryDelete} category={category} />
           )
         })}
 

@@ -5,7 +5,6 @@ export default (state=initialState, action) => {
   let { type, payload } = action;
   switch (type) {
     case 'CATEGORY_CREATE':
-    console.log('payload, needs to have all 4', payload)
       return ([...state, payload]);
     case 'CATEGORY_UPDATE':
       return (state.map((category) => {
