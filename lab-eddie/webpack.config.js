@@ -1,45 +1,45 @@
 'use strict';
 
-const HtmlPlugin = require('html-webpack-plugin');
-const ExtractPlugin = require('extract-text-webpack-plugin');
-const UglifyPlugin = require('uglify-webpack-plugin');
-const CleanPlugin = require('clean-webpack-plugin');
 const {DefinePlugin, EnvironmentPlugin} = require('webpack');
+const HtmlPlugin = require('html-webpack-plugin');
+const CleanPlugin = require('clean-webpack-plugin');
+const UglifyPlugin = require('uglifyjs-webpack-plugin');
+const ExtractPlugin = require('extract-text-webpack-plugin');
 
-require('dotenv').config({path: `${__dirname}/,dev.env`});
+require('dotenv').config({ path: `${__dirname}/.dev.env` });
 const production = process.env.NODE_ENV === 'production';
 
 let plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
   new ExtractPlugin('bundle-[hash].css'),
-  new HtmlPlugin({template: `${__dirname}/src/index.html`}),
+  new HtmlPlugin({ template: `${__dirname}/src/index.html` }),
   new DefinePlugin({
     __DEBUG__: JSON.stringify(!production)
   })
 ];
 
 if (production) {
-  plugins = plugins.concat([new CleanPlugin(), new UglifyPlugin()]);
+  plugins = plugins.concat([ new CleanPlugin(), new UglifyPlugin() ]);
 }
 
-module.export = {
+module.exports = {
   plugins,
-  devtool: production ? undefined : 'eval',
+  entry: `${__dirname}/src/main.js`,
   devServer: {
     historyApiFallback: true
   },
-  entry: `${__dirname}/src/main.js`,
+  devtool: production ? undefined : 'eval',
   output: {
-    path: `${__dirname}/src/build`,
+    path: `${__dirname}/build`,
     filename: 'bundle-[hash].js',
     publicPath: process.env.CDN_URL
   },
   module: {
     rules: [
       {
-        test: /\.js$/m,
+        test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: 'babel-loader'
       },
       {
         test: /\.scss$/,
