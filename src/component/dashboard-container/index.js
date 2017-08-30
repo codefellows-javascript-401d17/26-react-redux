@@ -1,14 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {
-  categoryCreate,
-  categoryUpdate,
-  categoryDelete
-} from '../../action/category-actions.js';
+import {categoryCreate as categoryActionCreate} from '../../action/category-actions.js';
+import {expenseCreate as expenseActionCreate} from '../../action/expense-actions.js';
 
 import CategoryForm from '../category-form';
 import CategoryItem from '../category-item';
+import ExpenseForm from '../expense-form';
+import ExpenseItem from '../expense-item';
 
 class DashboardContainer extends React.Component {
   constructor(props){
@@ -24,17 +23,14 @@ class DashboardContainer extends React.Component {
           onComplete={this.props.categoryCreate}
         />
 
-        <CategoryItem
-          categories={this.props.categories}
-          categoryDelete={this.props.categoryDelete}
-          categoryUpdate={this.props.categoryUpdate}
-        />
-
         {this.props.categories.map((item) =>
-          <div key={item.id}>
-            <h3>{item.title}</h3>
-          </div>
+          <CategoryItem key={item.id} category={item}
+          expenseCreate = {this.props.expenseCreate}
+          expenses = {this.props.expenses}
+          />
         )}
+
+
       </main>
     )
   }
@@ -42,15 +38,15 @@ class DashboardContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    categories: state
+    categories: state.categories,
+    expenses: state.expenses
   }
 }
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
-    categoryCreate: (category) => dispatch(categoryCreate(category)),
-    categoryUpdate: (category) => dispatch(categoryUpdate(category)),
-    categoryDelete: (category) => dispatch(categoryDelete(category))
+    categoryCreate: (category) => dispatch(categoryActionCreate(category)),
+    expenseCreate: (expense) => dispatch(expenseActionCreate(expense))
   }
 }
 
