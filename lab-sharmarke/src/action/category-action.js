@@ -18,3 +18,5 @@ export const categoryDestroy = (category) => ({
   type: 'CATEGORY_DESTORY',
   payload: category
 });
+
+export const catergoryReset = () => ({ type: 'CATEGORY_RESET' })
