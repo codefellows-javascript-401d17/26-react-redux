@@ -4,8 +4,11 @@ const expenseReducer = function(expenses = {}, action) {
   switch (type) {
     case 'CATEGORY_CREATE':
       return {...expenses, [payload.id]: []};
-    case 'CATEGORY_DELETE':
-      return {...expenses, [payload.id]: undefined};
+    case 'CATEGORY_DELETE': {
+      let newExpenses = {...expenses};
+      delete newExpenses[payload.id];
+      return newExpenses;
+    }
     case 'EXPENSE_CREATE': {
       let { categoryId } = payload;
       let categoryExpenses = expenses[categoryId];     

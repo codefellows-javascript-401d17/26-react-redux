@@ -6,8 +6,6 @@ const categoryReducer = function(categories = [], action) {
       return categories.map(category => category.id === action.payload.id ? action.payload : category);
     case 'CATEGORY_DELETE':
       return categories.filter(category => category.id !== action.payload.id);
-    case 'CATEGORY_RESET':
-      return [];
     default:
       return categories;
   }

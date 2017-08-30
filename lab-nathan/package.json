@@ -5,7 +5,17 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "watch": "webpack-dev-server --inline --hot"
+    "watch": "webpack-dev-server --inline --hot",
+    "test": "jest --coverage",
+    "test-watch": "jest --watchAll"
+  },
+  "jest": {
+    "globals": {
+      "__DEBUG__": false,
+      "process.env": {
+        "NODE_ENV": "testing"
+      }
+    }
   },
   "keywords": [],
   "author": "",
@@ -42,6 +52,7 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^4.5.0",
+    "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-react": "^7.3.0"
   }
 }
