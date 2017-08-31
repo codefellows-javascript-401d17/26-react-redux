@@ -1,11 +1,21 @@
+import { validateCategory } from '../lib/validators.js';
+
 const categoryReducer = function(categories = [], action) {
-  switch (action.type) {
-    case 'CATEGORY_CREATE':
-      return [...categories, action.payload];
-    case 'CATEGORY_UPDATE':
-      return categories.map(category => category.id === action.payload.id ? action.payload : category);
-    case 'CATEGORY_DELETE':
-      return categories.filter(category => category.id !== action.payload.id);
+  let { type, payload } = action;
+
+  switch (type) {
+    case 'CATEGORY_CREATE': {
+      validateCategory(payload);
+      return [...categories, payload];
+    }
+    case 'CATEGORY_UPDATE': {
+      validateCategory(payload);      
+      return categories.map(category => category.id === payload.id ? payload : category);
+    }
+    case 'CATEGORY_DELETE': {
+      validateCategory(payload);      
+      return categories.filter(category => category.id !== payload.id);
+    }
     default:
       return categories;
   }

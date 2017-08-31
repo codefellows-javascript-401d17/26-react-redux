@@ -7,12 +7,12 @@ class ExpenseForm extends React.Component {
 
     this.state = {
       name: props.expense ? props.expense.name : '',
-      price: props.expense ? props.expense.price : '',
+      price: props.expense ? props.expense.price : 0,
       categoryId: props.expense ? props.expense.categoryId : '',
     };
 
     this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleBudgetChange = this.handleBudgetChange.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -20,8 +20,8 @@ class ExpenseForm extends React.Component {
     this.setState({ name: e.target.value });
   }
 
-  handleBudgetChange(e) {
-    this.setState({ price: e.target.value });
+  handlePriceChange(e) {
+    this.setState({ price: Number(e.target.value) });
   }
 
   handleSubmit(e) {
@@ -53,7 +53,7 @@ class ExpenseForm extends React.Component {
           name='price'
           type='number'
           placeholder='price'
-          onChange={this.handleBudgetChange} />
+          onChange={this.handlePriceChange} />
         <button type='submit'>{this.props.buttonText}</button>
       </form>
     );
