@@ -1,60 +1,56 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
+import {expenseCreate as expenseActionCreate} from '../../action/expense-actions.js';
+
 import CategoryForm from '../category-form';
 import ExpenseForm from '../expense-form';
-import ExpenseItem from '../expense-item'
-import {categoryUpdate, categoryDestroy} from '../../action/category-action.js';
-import {expenseCreate} from '../../action/expense-actions.js';
-
+import ExpenseItem from '../expense-item';
 
 class CategoryItem extends React.Component {
   render() {
-    let {category, categoryUpdate, categoryDestroy, expenses} = this.props;
+    let categoryID = this.props.category.id;
 
     return (
       <section className='category-item'>
-        <div className='category container'>
-          <div className='category-content'>
-            <h2>{category.name}</h2>
-            <h3>{category.budget}</h3>
-            <button onClick={() => categoryDestroy(category)}>DELETE</button>
-          </div>
-          <div className='category-editing'>
-            <CategoryForm
-              buttonText='update category'
-              category={category}
-              onComplete={categoryUpdate}
-            />
-          </div>
+        <button onClick={() => this.props.categoryDelete(this.props.category)}>X</button>
+
+        <div>
+          <h2>{this.props.category.name}</h2>
+          <p>budget: {this.props.category.budget}</p>
         </div>
 
-        <div className='expense-container'>
-          <ExpenseForm
-            category={category}
-            buttonText='create expense'
-            onComplete={this.props.expenseCreate}
-          />
+        <CategoryForm
+          buttonText='update'
+          onComplete={this.props.categoryUpdate}
+          category={this.props.category}
+        />
 
-          <ul className='expense-items'>
-            {expenses.map(expense =>
-              <ExpenseItem key={expense.id} expense={expense} category={category} />
-            )}
-          </ul>
-        </div>
+
+        <ExpenseForm
+          buttonText='add'
+          onComplete={this.props.expenseCreate}
+          category={this.props.category}
+        />
+
+        {this.props.expenses ? this.props.expenses[categoryID].map(item =>
+          <ExpenseItem key={item.id} expense={item} />
+        ) : <p>add an expense</p>}
       </section>
     )
   }
 }
 
-let mapStateToProps = (state, props) => ({
-  expenses: state.expenses[props.category.id]
-});
+const mapStateToProps = (state) => {
+  return {
+    expenses: state.expenses
+  }
+}
 
-
-let mapDispatchToProps = dispatch => ({
-  categoryUpdate: (category) => dispatch(categoryUpdate(category)),
-  categoryDestroy: (category) => dispatch(categoryDestroy(category)),
-  expenseCreate: (expense) => dispatch(expenseCreate(expense))
-});
+const mapDispatchToProps = (dispatch, getState) => {
+  return {
+    expenseCreate: (expense) => dispatch(expenseActionCreate(expense))
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem);

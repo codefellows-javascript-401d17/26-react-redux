@@ -1,30 +1,54 @@
-
 import React from 'react';
-import uuid from 'uuid';
 
 class ExpenseForm extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      id: props.expense ? props.expense.id: uuid.v1(),
-      timestamp: props.expense ? props.expense.timestamp: new Date(),
-      name: props.expense ? props.expense.name: '',
-      categoryID: props.category ? props.category.id: null,
-      price: props.category ? props.category.budget: ''
+      name: props.expense ? props.expense.name : '',
+      categoryID: props.expense ? props.expense.categoryID : this.props.category.id,
+      price: props.expense ? props.expense.price : 0,
+      id: props.expense ? props.expense.id : null
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillReceiveProps(props) {
+    if(props.expense) {
+      this.setState(props.expense);
+    }
+  }
+
   handleChange(e) {
-    this.setState({ name: e.target.value})
+    let {name, value, type} = e.target;
+
+    if(type === 'number') {
+      try {
+        this.setState({
+          [name]: parseInt(value)
+        })
+      } catch(err) {
+        console.log(err);
+      }
+    } else {
+      this.setState({
+        [name]: value
+      })
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.onComplete({...this.state});
+
+    if(!this.props.category) {
+      this.setState({
+        name: '',
+        price: 0
+      })
+    }
   }
 
   render() {
@@ -41,7 +65,7 @@ class ExpenseForm extends React.Component {
         <input
           name='price'
           type='number'
-          placeholder='number'
+          placeholder='0'
           value={this.state.price}
           onChange={this.handleChange}
         />

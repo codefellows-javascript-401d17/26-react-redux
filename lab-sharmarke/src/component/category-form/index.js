@@ -1,5 +1,4 @@
 import React from 'react';
-import uuid from 'uuid';
 
 class CategoryForm extends React.Component {
   constructor(props) {
@@ -8,7 +7,7 @@ class CategoryForm extends React.Component {
     this.state = {
       name: props.category ? props.category.name : '',
       budget: props.category ? props.category.budget : 0,
-      id: props.category ? props.category.id : uuid.v1()
+      id: props.category ? props.category.id : null
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -16,9 +15,9 @@ class CategoryForm extends React.Component {
   }
 
   handleChange(e) {
-    let { name, value, type } = e.target;
+    let {name, value, type} = e.target;
 
-    if (type === 'number') {
+    if(type === 'number') {
       try {
         this.setState({
           [name]: parseInt(value)
@@ -35,7 +34,7 @@ class CategoryForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onComplete({...this.state});
+    this.props.onComplete(Object.assign({}, this.state));
   }
 
   render() {
@@ -52,14 +51,13 @@ class CategoryForm extends React.Component {
         <input
           name='budget'
           type='number'
-          placeholder='enter a number'
+          placeholder='0'
           value={this.state.budget}
           onChange={this.handleChange}
         />
-
         <button type='submit'>{this.props.buttonText}</button>
       </form>
-    );
+    )
   }
 }
 
