@@ -18,28 +18,8 @@ class ExpenseForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillReceiveProps(props) {
-    if (props.expense) {
-      this.setState(props.expense);
-    }
-  }
-
   handleChange(e) {
-    let {name, value, type} = e.target;
-
-    if (type === 'number') {
-      try {
-        this.setState({
-          [name]: parseInt(value)
-        })
-      } catch(err) {
-        console.error(err);
-      }
-    } else {
-      this.setState({
-        [name]: value
-      })
-    }
+    this.setState({ name: e.target.value})
   }
 
   handleSubmit(e) {
