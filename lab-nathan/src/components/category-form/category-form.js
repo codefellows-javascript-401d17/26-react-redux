@@ -7,7 +7,7 @@ class CategoryForm extends React.Component {
 
     this.state = {
       name: props.category ? props.category.name : '',
-      budget: props.category ? props.category.budget : ''
+      budget: props.category ? props.category.budget : 0
     };
 
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -20,7 +20,7 @@ class CategoryForm extends React.Component {
   }
 
   handleBudgetChange(e) {
-    this.setState({ budget: e.target.value });
+    this.setState({ budget: Number(e.target.value) });
   }
 
   handleSubmit(e) {

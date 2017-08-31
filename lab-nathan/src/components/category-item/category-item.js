@@ -27,10 +27,12 @@ class CategoryItem extends React.Component {
   }
 
   render() {
+    let categoryExpenses = this.props.expenses[this.props.category.id];
+    let amountSpent = categoryExpenses.length > 0 ? categoryExpenses.reduce((acc, cur) => acc += cur.price, 0) : 0;
     return (
       <div className='category-item'>
         <h2>Category: {this.props.category.name}</h2>
-        <h4>Budget: {this.props.category.budget}</h4>
+        <h4>Budget: {this.props.category.budget - amountSpent}</h4>
         <button onClick={this.handleSubmit}>Delete</button>
         <CategoryForm 
           buttonText='update'
