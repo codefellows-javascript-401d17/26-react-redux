@@ -8,8 +8,8 @@ describe('Category Reducer', () => {
 
   test('if no action type is presented, the state should be returned', () => {
     let state = [
-      { id: 'someid', title: 'some title', },
-      { id: 'anotherid', title: 'another title' }
+      { id: 'someid', title: 'some title', budget: 234, timestamp: Date.now() },
+      { id: 'anotherid', title: 'another title', budget: 234, timestamp: Date.now() }
     ];
     let result = categoryReducer(state, { type: null });
     expect(result).toEqual(state);
@@ -18,7 +18,7 @@ describe('Category Reducer', () => {
   test('CATEGORY_CREATE should append a category to the categories array', () => {
     let action = {
       type: 'CATEGORY_CREATE',
-      payload: 'sample payload'
+      payload: { name: 'sample payload', id: "1", budget: 30, timestamp: Date.now() }
     };
 
     let result = categoryReducer([], action);
@@ -29,21 +29,21 @@ describe('Category Reducer', () => {
   test('CATEGORY_UPDATE should update a category', () => {
     let createAction = {
       type: 'CATEGORY_CREATE',
-      payload: { name: 'sample payload', id: "1" }
+      payload: { name: 'sample payload', id: "1", budget: 30, timestamp: Date.now() }
     };
 
     let createResult = categoryReducer([], createAction);
 
     let createAction2 = {
       type: 'CATEGORY_CREATE',
-      payload: { name: 'sample payload 2', id: "2" }
+      payload: { name: 'sample payload 2', id: "2", budget: 30, timestamp: Date.now() }
     };
 
     let createResult2 = categoryReducer(createResult, createAction2);
 
     let updateAction = {
       type: 'CATEGORY_UPDATE',
-      payload: { name: 'updated payload', id: "1" }
+      payload: { name: 'updated payload', id: "1", budget: 30, timestamp: Date.now() }
     };
 
     let updateResult = categoryReducer(createResult2, updateAction);
@@ -54,14 +54,14 @@ describe('Category Reducer', () => {
   test('CATEGORY_DELETE should delete a category', () => {
     let createAction = {
       type: 'CATEGORY_CREATE',
-      payload: { name: 'sample payload', id: "1" }
+      payload: { name: 'sample payload', id: "1", budget: 30, timestamp: Date.now() }
     };
 
     let createResult = categoryReducer([], createAction);
 
     let deleteAction = {
       type: 'CATEGORY_DELETE',
-      payload: { name: 'sample payload', id: "1" }
+      payload: { name: 'sample payload', id: "1", budget: 234, timestamp: Date.now() }
     };
 
     let deleteResult = categoryReducer(createResult, deleteAction);

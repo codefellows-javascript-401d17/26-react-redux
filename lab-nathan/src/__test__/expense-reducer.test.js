@@ -8,8 +8,8 @@ describe('Expense Reducer', () => {
 
   test('if no action type is presented, the state should be returned', () => {
     let state = {
-      0: [{ id: 'someid', title: 'some title', }],
-      1: [{ id: 'anotherid', title: 'another title' }]
+      0: [{ id: 'someid', title: 'some title', price: 2, categoryId: "2" }],
+      1: [{ id: 'anotherid', title: 'another title', price: 2, categoryId: "2" }]
     };
     let result = expenseReducer(state, { type: null });
     expect(result).toEqual(state);
@@ -18,7 +18,7 @@ describe('Expense Reducer', () => {
   test('CATEGORY_CREATE should create an empty array at the supplied category id', () => {
     let action = {
       type: 'CATEGORY_CREATE',
-      payload: { name: 'sample payload', id: "1" }
+      payload: { name: 'sample payload', id: "1", budget: 30, timestamp: Date.now() }
     };
 
     let result = expenseReducer({}, action);
@@ -28,17 +28,17 @@ describe('Expense Reducer', () => {
   test('CATEGORY_DELETE should delete the array with the supplied category id', () => {
     let action = {
       type: 'CATEGORY_DELETE',
-      payload: { name: 'sample payload', id: "1" }
+      payload: { name: 'sample payload', id: "1", budget: 30, timestamp: Date.now() }
     };
 
-    let result = expenseReducer({ 1: [ { id: 'someid', categoryId: '1', title: 'another title' } ] }, action);
+    let result = expenseReducer({ 1: [ { id: 'someid', categoryId: '1', title: 'another title', price: 3 } ] }, action);
     expect(result).toEqual({});
   });
 
   test('EXPENSE_CREATE should append a expense to the categories array', () => {
     let action = {
       type: 'EXPENSE_CREATE',
-      payload: { id: 'someid', categoryId: '1', title: 'another title' }
+      payload: { id: 'someid', categoryId: '1', title: 'another title', price: 34, timestamp: Date.now() }
     };
 
     let result = expenseReducer({ 1: [] }, action);
@@ -49,12 +49,12 @@ describe('Expense Reducer', () => {
   test('EXPENSE_UPDATE should update a expense', () => {
     let action = {
       type: 'EXPENSE_UPDATE',
-      payload: { id: 'someid', categoryId: '1', title: 'updated title' }
+      payload: { id: 'someid', categoryId: '1', title: 'updated title', price: 342, timestamp: Date.now() }
     };
 
     let result = expenseReducer({ 
-      1: [ { id: 'someid', categoryId: '1', title: 'another title' }, { id: 'someid2', categoryId: '1', title: 'another title2' } ], 
-      2: [ { id: 'someid', categoryId: '2', title: 'another title' }, { id: 'someid2', categoryId: '2', title: 'another title2' } ] 
+      1: [ { id: 'someid', categoryId: '1', title: 'another title', price: 342, timestamp: Date.now() }, { id: 'someid2', categoryId: '1', title: 'another title2', price: 342, timestamp: Date.now() } ], 
+      2: [ { id: 'someid', categoryId: '2', title: 'another title', price: 342, timestamp: Date.now() }, { id: 'someid2', categoryId: '2', title: 'another title2', price: 342, timestamp: Date.now() } ] 
     }, action);
 
     expect(result[1][0]).toBe(action.payload);
@@ -63,10 +63,10 @@ describe('Expense Reducer', () => {
   test('EXPENSE_DELETE should delete a expense', () => {
     let action = {
       type: 'EXPENSE_DELETE',
-      payload: { id: 'someid', categoryId: '1', title: 'updated title' }
+      payload: { id: 'someid', categoryId: '1', title: 'updated title', price: 342, timestamp: Date.now() }
     };
 
-    let result = expenseReducer({ 1: [ { id: 'someid', categoryId: '1', title: 'another title' } ] }, action);
+    let result = expenseReducer({ 1: [ { id: 'someid', categoryId: '1', title: 'another title', price: 342, timestamp: Date.now() } ] }, action);
     expect(result[1].length).toBe(0);
   });
 });
