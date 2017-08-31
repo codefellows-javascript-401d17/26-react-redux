@@ -19,7 +19,11 @@ class ExpenseForm extends React.Component {
 
   componentWillReceiveProps(props) {
     if (props.expense) {
-      this.setState(props.expense);
+      this.setState({...props.expense});
+    }
+
+    if (props.categoryID) {
+      this.setState({categoryID: props.categoryID})
     }
   }
 
@@ -43,7 +47,10 @@ class ExpenseForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onComplete({...this.state});
+    this.props.onComplete(this.state);
+    if (!this.props.expense) {
+      this.setState({name: ''});
+    }
   }
 
   render() {

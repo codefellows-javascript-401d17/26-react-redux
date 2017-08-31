@@ -5,32 +5,33 @@ import {expenseUpdate, expenseDelete} from '../../action/expense-actions.js';
 
 class ExpenseItem extends React.Component {
   render() {
-    let {expense, expenseUpdate, expenseDelete} = this.props;
+    let {category, expense, expenseUpdate, expenseDelete} = this.props;
 
     return (
-      <section className='expense-item'>
+      <li className='expense-item'>
         <div>
           <div className='expense-content'>
             <h4>{expense.name}</h4>
             <h4>{expense.price}</h4>
-            <button onClick={() => expenseDelete(category)}>X</button>
+            <button onClick={() => expenseDelete(expense)}>X</button>
           </div>
           <div className='expense-editing'>
             <ExpenseForm
-              buttonText='update expense'
+              category={category}
               expense={expense}
+              buttonText='update expense'
               onComplete={expenseUpdate}
             />
           </div>
         </div>
-      </section>
+      </li>
     )
   }
 }
 
 let mapStateToProps = () =>({});
 
-let mapDispatchToProps = dispatch => ({
+let mapDispatchToProps = (dispatch) => ({
   expenseUpdate: (expense) => dispatch(expenseUpdate(expense)),
   expenseDelete: (expense) => dispatch(expenseDelete(expense))
 });
