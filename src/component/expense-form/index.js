@@ -1,3 +1,4 @@
+import './_expense-form.scss';
 import React from 'react';
 import uuid from 'uuid';
 

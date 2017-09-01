@@ -16,10 +16,10 @@ class DashboardContainer extends React.Component {
   render() {
     return (
       <main className='dashboard-container'>
-        <h2>Dashboard</h2>
+        <h2>Create Budget:</h2>
 
         <CategoryForm
-          buttonText='create category'
+          buttonText='create budget'
           onComplete={this.props.categoryCreate}
         />
 

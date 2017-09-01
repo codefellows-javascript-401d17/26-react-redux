@@ -1,3 +1,4 @@
+import './_category-item.scss';
 import React from 'react';
 import {connect} from 'react-redux';
 import CategoryForm from '../category-form';
@@ -16,12 +17,12 @@ class CategoryItem extends React.Component {
         <div className='category container'>
           <div className='category-content'>
             <h2>{category.name}</h2>
-            <h3>{category.budget}</h3>
-            <button onClick={() => categoryDelete(category)}>DELETE</button>
+            <h2>{category.budget}</h2>
+            <button className='remove' onClick={() => categoryDelete(category)}>DELETE</button>
           </div>
           <div className='category-editing'>
             <CategoryForm
-              buttonText='update category'
+              buttonText='update'
               category={category}
               onComplete={categoryUpdate}
             />
