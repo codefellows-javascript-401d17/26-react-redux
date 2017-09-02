@@ -1,12 +1,13 @@
+import './expense-item.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import ExpenseForm from '../expense-form/expense-form.js';
+import ExpenseForm from './expense-form.js';
 import { connect } from 'react-redux';
 
 import {
   expenseUpdate,
   expenseDelete
-} from '../../actions/expense-actions.js';
+} from '../actions/expense-actions.js';
 
 class ExpenseItem extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class ExpenseItem extends React.Component {
 
   render() {
     return (
-      <div className='category-item'>
+      <div className='expense-item'>
         <h3>Name: {this.props.expense.name}</h3>
         <h4>Price: {this.props.expense.price}</h4>
         <button onClick={this.handleSubmit}>Delete</button>

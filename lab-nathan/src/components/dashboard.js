@@ -1,27 +1,26 @@
+import './dashboard.scss';
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import CategoryItem from '../category-item/category-item.js';
-
-import { categoryCreate } from '../../actions/category-actions.js';
-
-import CategoryForm from '../category-form/category-form.js';
+import CategoryItem from './category-item.js';
+import CategoryForm from './category-form.js';
+import { categoryCreate } from '../actions/category-actions.js';
 
 class DashboardContainer extends React.Component {
   render() {
     return (
-      <main className='dashboard-container'>
-        <h1>Dashboard</h1>
+      <main className='dashboard'>
         <CategoryForm
-          buttonText='create category'
+          buttonText='Add'
           onComplete={this.props.categoryCreate}
         />
-
-        {this.props.categories.map((item, index) =>
-          <CategoryItem 
-            key={index} 
-            category={item} />
-        )}
+        <div className='category-container'>
+          {this.props.categories.map((item, index) =>
+            <CategoryItem 
+              key={index} 
+              category={item} />
+          )}
+        </div>
       </main>
     );
   }
