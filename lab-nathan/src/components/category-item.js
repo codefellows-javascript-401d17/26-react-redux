@@ -44,17 +44,18 @@ class CategoryItem extends React.Component {
             <span className='category-title'>{category.name}</span>
             <span className={overBudget ? 'negative' : 'positive'}>${category.budget - amountSpent}</span>
           </span>
-          <button onClick={this.handleSubmit}>Delete</button>
+          <button>&#9998;</button>
+          <button onClick={this.handleSubmit}>&#10006;</button>
         </div>
         
         
         
         <CategoryForm 
-          buttonText='update'
+          buttonText='Update'
           category={this.props.category}
           onComplete={this.props.categoryUpdate} />
         <ExpenseForm
-          buttonText='create expense'
+          buttonText='Add'
           categoryId={this.props.category.id}
           onComplete={this.props.expenseCreate}
         />

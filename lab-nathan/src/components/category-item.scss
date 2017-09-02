@@ -5,6 +5,7 @@
   min-width: 20%;
 
   & .category-form {
+    display: none;
     padding-left: 0;
     padding-right: 0;
     background-color: transparent;
@@ -13,7 +14,7 @@
 
   & .category-header {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     border-bottom: 1px dotted $black;
     padding: $gutter-xsmall 0;
   }
@@ -30,6 +31,19 @@
       font-size: 1.75rem;
       font-weight: bold;
       margin-right: ($gutter-small + $gutter-xsmall) / 2;
+    }
+  }
+
+  & button {
+    background: transparent;
+    border: none;
+    height: initial;
+    cursor: pointer;
+    outline: none;
+    padding: 0 5px;
+
+    &:active {
+      color: red;
     }
   }
 }

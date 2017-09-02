@@ -1,3 +1,4 @@
+import './category-form.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -33,6 +34,8 @@ class CategoryForm extends React.Component {
       category.timestamp = this.props.category.timestamp;
     }
 
+    e.target.reset();
+
     this.props.onComplete(category);
   }
 
@@ -42,12 +45,12 @@ class CategoryForm extends React.Component {
         <input
           name='name'
           type='text'
-          placeholder='category'
+          placeholder='Category'
           onChange={this.handleNameChange} />
         <input
           name='budget'
           type='number'
-          placeholder='budget'
+          placeholder='Budget'
           onChange={this.handleBudgetChange} />
         <button type='submit'>{this.props.buttonText}</button>
       </form>

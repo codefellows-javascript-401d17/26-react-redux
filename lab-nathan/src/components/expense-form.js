@@ -38,6 +38,8 @@ class ExpenseForm extends React.Component {
       expense.categoryId = this.props.categoryId;
     }
 
+    e.target.reset();
+
     this.props.onComplete(expense);
   }
 
@@ -47,7 +49,7 @@ class ExpenseForm extends React.Component {
         <input
           name='name'
           type='text'
-          placeholder='name'
+          placeholder='expense'
           onChange={this.handleNameChange} />
         <input
           name='price'
