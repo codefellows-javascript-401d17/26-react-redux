@@ -8,7 +8,8 @@ class CategoryForm extends React.Component {
 
     this.state = {
       name: props.category ? props.category.name : '',
-      budget: props.category ? props.category.budget : 0
+      budget: props.category ? props.category.budget : 0,
+      dragging: false
     };
 
     this.handleNameChange = this.handleNameChange.bind(this);

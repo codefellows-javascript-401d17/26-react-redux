@@ -12,7 +12,7 @@
     border-bottom: none;
   }
 
-  & .category-header {
+  & .item-header {
     display: flex;
     align-items: baseline;
     border-bottom: 1px dotted $black;
@@ -20,8 +20,8 @@
   }
 }
 
-.category-header {
-  & .category-header-left {
+.item-header {
+  & .item-header-left {
     flex: 1;
     font-size: 1.25rem;
     display: flex;

@@ -4,9 +4,20 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CategoryItem from './category-item.js';
 import CategoryForm from './category-form.js';
-import { categoryCreate } from '../actions/category-actions.js';
+import ReorderableList from './reorderable-list.js';
+import { categoryCreate, categoryMove } from '../actions/category-actions.js';
 
 class DashboardContainer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.requestReorder = this.requestReorder.bind(this);
+  }
+
+  requestReorder(fromIndex, toIndex) {
+    this.props.categoryMove(this.props.categories[fromIndex], toIndex);
+  }
+
   render() {
     return (
       <main className='dashboard'>
@@ -14,13 +25,13 @@ class DashboardContainer extends React.Component {
           buttonText='Add'
           onComplete={this.props.categoryCreate}
         />
-        <div className='category-container'>
+        <ReorderableList className='category-container' requestReorder={this.requestReorder}>
           {this.props.categories.map((item, index) =>
             <CategoryItem 
               key={index} 
               category={item} />
           )}
-        </div>
+        </ReorderableList>
       </main>
     );
   }
@@ -28,7 +39,8 @@ class DashboardContainer extends React.Component {
 
 DashboardContainer.propTypes = {
   categories: PropTypes.array,
-  categoryCreate: PropTypes.func
+  categoryCreate: PropTypes.func,
+  categoryMove: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -38,6 +50,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     categoryCreate: (category) => dispatch(categoryCreate(category)),
+    categoryMove: (category, newIndex) => dispatch(categoryMove(category, newIndex)),
   }
 }
 

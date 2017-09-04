@@ -49,12 +49,12 @@ class ExpenseForm extends React.Component {
         <input
           name='name'
           type='text'
-          placeholder='expense'
+          placeholder='Expense'
           onChange={this.handleNameChange} />
         <input
           name='price'
           type='number'
-          placeholder='price'
+          placeholder='Price'
           onChange={this.handlePriceChange} />
         <button type='submit'>{this.props.buttonText}</button>
       </form>

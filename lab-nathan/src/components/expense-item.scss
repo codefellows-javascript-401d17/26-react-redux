@@ -2,4 +2,12 @@
 
 .expense-item {
   background-color: white;
+
+  & .item-header {
+    border-bottom: none;
+  }
+
+  & .expense-form {
+    display: none;
+  }
 }

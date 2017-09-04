@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import CategoryForm from './category-form.js';
 import ExpenseForm from './expense-form.js';
 import ExpenseItem from './expense-item.js';
+import ItemHeader from './item-header.js';
 import { connect } from 'react-redux';
 
 import {
@@ -18,13 +19,6 @@ import {
 class CategoryItem extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.categoryDelete(this.props.category);
   }
 
   render() {
@@ -39,17 +33,11 @@ class CategoryItem extends React.Component {
     let overBudget = amountSpent > category.budget;
     return (
       <div className='category-item'>
-        <div className='category-header'>
-          <span className='category-header-left'>
-            <span className='category-title'>{category.name}</span>
-            <span className={overBudget ? 'negative' : 'positive'}>${category.budget - amountSpent}</span>
-          </span>
-          <button>&#9998;</button>
-          <button onClick={this.handleSubmit}>&#10006;</button>
-        </div>
-        
-        
-        
+        <ItemHeader itemDelete={() => this.props.categoryDelete(category)} itemUpdate={() => this.props.categoryUpdate(category)}>
+          <span className='category-title'>{category.name}</span>
+          <span className={overBudget ? 'negative' : 'positive'}>${category.budget - amountSpent}</span>
+        </ItemHeader>
+
         <CategoryForm 
           buttonText='Update'
           category={this.props.category}
@@ -79,7 +67,8 @@ CategoryItem.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  expenses: state.expenses
+  expenses: state.expenses,
+  categories: state.categories
 });
 
 const mapDispatchToProps = (dispatch) => {
