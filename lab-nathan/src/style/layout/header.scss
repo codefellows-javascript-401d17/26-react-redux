@@ -1,0 +1,8 @@
+header {
+  background: $bookend-background;
+  min-height: $bookend-height;
+  display: flex;
+  align-items: center;
+  padding: 0 $gutter-large;
+  color: $white;
+}

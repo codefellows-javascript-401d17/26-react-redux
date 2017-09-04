@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import reduxReporter from '../../lib/redux-reporter.js';
-import reducers from '../../reducers/reducers.js';
-import Dashboard from '../dashboard/dashboard.js';
+import reduxReporter from '../lib/redux-reporter.js';
+import reducers from '../reducers/reducers.js';
+import Dashboard from './dashboard.js';
 
 const store = createStore(reducers, applyMiddleware(reduxReporter));
 

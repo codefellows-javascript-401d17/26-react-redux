@@ -1,0 +1,14 @@
+@import '../style/lib/vars';
+
+.category-form {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+  padding: $gutter-small $gutter-large;
+}
+
+.category-container {
+  display: flex;
+  flex-flow: row;
+  flex: 1;
+  overflow-x: auto;
+}

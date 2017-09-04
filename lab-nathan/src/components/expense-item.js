@@ -1,33 +1,30 @@
+import './expense-item.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
-import ExpenseForm from '../expense-form/expense-form.js';
+import ExpenseForm from './expense-form.js';
+import ItemHeader from './item-header.js';
 import { connect } from 'react-redux';
 
 import {
   expenseUpdate,
   expenseDelete
-} from '../../actions/expense-actions.js';
+} from '../actions/expense-actions.js';
 
 class ExpenseItem extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.expenseDelete(this.props.expense);
   }
 
   render() {
     return (
-      <div className='category-item'>
-        <h3>Name: {this.props.expense.name}</h3>
-        <h4>Price: {this.props.expense.price}</h4>
-        <button onClick={this.handleSubmit}>Delete</button>
+      <div className='expense-item'>
+        <ItemHeader itemDelete={() => this.props.expenseDelete(this.props.expense)} itemUpdate={() => this.props.expenseUpdate(this.props.expense)}>
+          <span className='category-title'>{this.props.expense.name}</span>
+          <span className='negative'>${this.props.expense.price}</span>
+        </ItemHeader>
+
         <ExpenseForm 
-          buttonText='update'
+          buttonText='Update'
           expense={this.props.expense}
           onComplete={this.props.expenseUpdate} />
       </div>
