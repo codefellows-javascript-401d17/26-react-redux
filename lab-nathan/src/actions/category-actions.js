@@ -14,14 +14,6 @@ export const categoryUpdate = (category) => ({
   payload: category
 });
 
-export const categoryMove = (category, newIndex) => ({
-  type: 'CATEGORY_MOVE',
-  payload: {
-    category: category,
-    newIndex: newIndex
-  }
-});
-
 export const categoryDelete = (category) => ({
   type: 'CATEGORY_DELETE',
   payload: category

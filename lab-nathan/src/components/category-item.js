@@ -19,6 +19,10 @@ import {
 class CategoryItem extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showUpdate: false
+    }
   }
 
   render() {
@@ -33,15 +37,24 @@ class CategoryItem extends React.Component {
     let overBudget = amountSpent > category.budget;
     return (
       <div className='category-item'>
-        <ItemHeader itemDelete={() => this.props.categoryDelete(category)} itemUpdate={() => this.props.categoryUpdate(category)}>
+        <ItemHeader itemDelete={() => this.props.categoryDelete(category)} itemUpdate={() => this.setState({ showUpdate: !this.state.showUpdate })}>
           <span className='category-title'>{category.name}</span>
           <span className={overBudget ? 'negative' : 'positive'}>${category.budget - amountSpent}</span>
         </ItemHeader>
 
-        <CategoryForm 
-          buttonText='Update'
-          category={this.props.category}
-          onComplete={this.props.categoryUpdate} />
+        {this.state.showUpdate 
+          ? 
+          <CategoryForm 
+            buttonText='Update'
+            category={this.props.category}
+            onComplete={category => {
+              this.setState({ showUpdate: false });
+              return this.props.categoryUpdate(category);
+            }} /> 
+          : 
+          null
+        }
+        
         <ExpenseForm
           buttonText='Add'
           categoryId={this.props.category.id}
