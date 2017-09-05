@@ -13,20 +13,32 @@ import {
 class ExpenseItem extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showUpdate: false
+    }
   }
 
   render() {
     return (
       <div className='expense-item'>
-        <ItemHeader itemDelete={() => this.props.expenseDelete(this.props.expense)} itemUpdate={() => this.props.expenseUpdate(this.props.expense)}>
-          <span className='category-title'>{this.props.expense.name}</span>
+        <ItemHeader itemDelete={() => this.props.expenseDelete(this.props.expense)} itemUpdate={() => this.setState({ showUpdate: !this.state.showUpdate })}>
+          <span className='expense-title'>{this.props.expense.name}</span>
           <span className='negative'>${this.props.expense.price}</span>
         </ItemHeader>
 
-        <ExpenseForm 
-          buttonText='Update'
-          expense={this.props.expense}
-          onComplete={this.props.expenseUpdate} />
+        {this.state.showUpdate 
+          ? 
+          <ExpenseForm 
+            buttonText='Update'
+            expense={this.props.expense}
+            onComplete={expense => {
+              this.setState({ showUpdate: false });
+              return this.props.expenseUpdate(expense);
+            }} /> 
+          : 
+          null
+        }
       </div>
     );
   }
