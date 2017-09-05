@@ -1,0 +1,30 @@
+@import '../../style/lib/vars';
+@import '../category-item/_category-item.scss';
+
+.expense-item {
+  position: relative;
+  padding: $gutter-sm;
+  background: $btn-primary;
+  margin: $gutter-sm;
+  font-size: 2vw;
+  border: solid .25vw $white;
+  border-radius: $border-radius;
+  margin-left: 0;
+  margin-right: 0;
+  line-height: 3vw;
+
+  p {
+    margin-bottom: $gutter-sm;
+    text-align: center;
+    color: $white;
+  }
+
+  button {
+    color: $white;
+
+    &.remove {
+      right: 1vw;
+      color: $white;
+    }
+  }
+}
