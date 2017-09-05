@@ -1,0 +1,41 @@
+html, body, section, main {
+  height: 100%;
+}
+
+body {
+  background: $white;
+  font-family: $header-font-family;
+  color: $black;
+  display: flex;
+  flex-flow: column;
+}
+
+h1 {
+  font-size: $extra-large-font;
+  font-weight: bold;
+}
+
+button {
+  background: linear-gradient(to bottom, #fff, #ddd);
+  border-radius: $border-radius;
+  border: $input-border;
+  box-sizing: border-box;
+  padding: 0 $gutter-small + $gutter-xsmall;
+  height: 30px;
+}
+
+form {
+  padding: $gutter-xsmall 0;
+}
+
+input {
+  margin-right: $gutter-small;
+  padding: $gutter-xsmall;
+  border: $input-border;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+  

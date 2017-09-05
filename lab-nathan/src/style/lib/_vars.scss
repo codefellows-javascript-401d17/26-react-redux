@@ -1,0 +1,21 @@
+$black: #000;
+$white: #fff;
+
+$primary: #E94F37;
+$secondary: hsl(218, 98%, 95%);
+$tertiary: #4387fd;
+
+$extra-large-font: 2rem;
+$large-font: 1.25rem;
+
+$header-font-family: 'Helvetica Neue', sans-serif;
+$font-primary: $black;
+$font-secondary: $white;
+$bookend-height: 75px;
+$bookend-background: linear-gradient(0deg, #c00, $primary);
+$gutter-large: 26px;
+$gutter-small: $gutter-large / 2;
+$gutter-xsmall: $gutter-small / 2;
+$gutter-xxsmall: $gutter-xsmall / 2;
+$border-radius: 0;
+$input-border: 1px solid #ccc;

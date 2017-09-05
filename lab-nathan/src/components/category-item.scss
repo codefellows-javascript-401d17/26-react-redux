@@ -1,0 +1,56 @@
+@import '../style/lib/vars';
+
+.category-item {
+  padding: $gutter-large;
+  min-width: 20%;
+
+  & .category-form {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent;
+    border-bottom: none;
+  }
+
+  & .item-header {
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px dotted $black;
+    padding: $gutter-xsmall 0;
+  }
+}
+
+.item-header {
+  & .item-header-left {
+    flex: 1;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: baseline;
+
+    & .category-title {
+      font-size: 1.75rem;
+      font-weight: bold;
+      margin-right: ($gutter-small + $gutter-xsmall) / 2;
+    }
+  }
+
+  & button {
+    background: transparent;
+    border: none;
+    height: initial;
+    cursor: pointer;
+    outline: none;
+    padding: 0 5px;
+
+    &:active {
+      color: red;
+    }
+  }
+}
+
+.positive {
+  color: #0a0;
+}
+
+.negative {
+  color: red;
+}
